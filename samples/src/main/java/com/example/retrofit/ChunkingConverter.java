@@ -76,6 +76,9 @@ public final class ChunkingConverter {
             @Override public void writeTo(BufferedSink sink) throws IOException {
               realBody.writeTo(sink);
             }
+
+            // 没有实现contentLength()所以retrofit自动添加了 Transform-Encode:Chunked
+            // Transform-Encode 资料：https://imququ.com/post/transfer-encoding-header-in-http.html
           };
         }
       };
