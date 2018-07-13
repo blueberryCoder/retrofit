@@ -25,8 +25,8 @@ import static retrofit2.Utils.methodError;
 
 /** Adapts an invocation of an interface method into an HTTP call. */
 final class HttpServiceMethod<ResponseT, ReturnT> extends ServiceMethod<ReturnT> {
-  private final RequestFactory requestFactory;
-  private final okhttp3.Call.Factory callFactory;
+  private final RequestFactory requestFactory; // 请求工厂，创建Request
+  private final okhttp3.Call.Factory callFactory;  // 默认的实现就是 OkHttpClient
   private final CallAdapter<ResponseT, ReturnT> callAdapter;
   private final Converter<ResponseBody, ResponseT> responseConverter;
 
@@ -62,6 +62,7 @@ final class HttpServiceMethod<ResponseT, ReturnT> extends ServiceMethod<ReturnT>
     }
 
     HttpServiceMethod<ResponseT, ReturnT> build() {
+      // 将注解解析为RequestFactory
       requestFactory = RequestFactory.parseAnnotations(retrofit, method);
 
       callAdapter = createCallAdapter();

@@ -50,7 +50,7 @@ public final class SimpleMockService {
       return delegate.returningResponse(response).contributors(owner, repo);
     }
 
-    void addContributor(String owner, String repo, String name, int contributions) {
+    void  addContributor(String owner, String repo, String name, int contributions) {
       Map<String, List<Contributor>> repoContributors = ownerRepoContributors.get(owner);
       if (repoContributors == null) {
         repoContributors = new LinkedHashMap<>();
